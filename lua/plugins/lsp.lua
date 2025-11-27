@@ -44,16 +44,6 @@ return {
       automatic_enable = true,
     })
 
-    -- LUA
-    vim.lsp.config("lua_ls", {
-      settings = {
-        Lua = {
-         diagnostics = {
-            globals = { "vim", "enabled" },
-          },
-        },
-      }
-    })
 
 
     vim.api.nvim_create_autocmd("LspDetach", {
@@ -131,5 +121,17 @@ return {
       end,
       desc = "User custom event for LspAttach",
     })
-  end
+  end,
+  -- LUA
+  vim.lsp.config("lua_ls", {
+    settings = {
+      Lua = {
+        diagnostics = {
+          globals = { "vim", "enabled" },
+        },
+      },
+    }
+  })
+
 }
+
