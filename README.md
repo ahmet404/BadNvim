@@ -1,12 +1,4 @@
 <div align = "center">
-
-██████╗  █████╗ ██████╗ ███╗   ██╗██╗   ██╗██╗███╗   ███╗
-██╔══██╗██╔══██╗██╔══██╗████╗  ██║██║   ██║██║████╗ ████║
-██████╔╝███████║██║  ██║██╔██╗ ██║██║   ██║██║██╔████╔██║
-██╔══██╗██╔══██║██║  ██║██║╚██╗██║╚██╗ ██╔╝██║██║╚██╔╝██║
-██████╔╝██║  ██║██████╔╝██║ ╚████║ ╚████╔╝ ██║██║ ╚═╝ ██║
-╚═════╝ ╚═╝  ╚═╝╚═════╝ ╚═╝  ╚═══╝  ╚═══╝  ╚═╝╚═╝     ╚═╝
-
 ![logo](img/logo.png) 
 # BadNvim                                                         
 ![Neovim](https://img.shields.io/badge/NeoVim-%2358A143.svg?&style=for-the-badge&logo=neovim&logoColor=white)![Lua](https://img.shields.io/badge/lua-%233C2D72.svg?style=for-the-badge&logo=lua&logoColor=white)
@@ -17,7 +9,7 @@
 ![Dashboard](img/dashboard.png) 
 #### UI Core
 ![Home](img/home.png) 
-## List Plugins
+## 🌟 List Plugins
 - Lazy load plugins with [lazy.nvim](https://github.com/folke/lazy.nvim)
 - Gruvbox themes with [gruvboy.nvim](https://github.com/mnabila/gruvboy.nvim)
 - File Explorer with [neo-tree.nvim](https://github.com/nvim-neo-tree/neo-tree.nvim)
@@ -34,7 +26,7 @@
 - LSP with [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
 - Formatting code with [none-ls.nvim](https://github.com/nvimtools/none-ls.nvim)
 - Fuzzy finder with [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
-## Requirements
+## 🗂️ Requirements
 - Install Neovim 0.95+ https://github.com/neovim/neovim/releases/tag/stable
 - C++ https://www.msys2.org/
 - GIT https://git-scm.com/download/win
@@ -44,20 +36,17 @@
 - Nerd Font https://www.nerdfonts.com/ or https://github.com/ryanoasis/nerd-fonts
 - Windows Terminal (Windows) https://apps.microsoft.com/store/detail/windows-terminal/9N0DX20HK701?hl=en-id&gl=id
 - Powershell (windows) https://apps.microsoft.com/store/detail/powershell/9MZ1SNWT0N5D?hl=en-id&gl=id
-## Installation
+## 🧰 Installation
 
 ### Windows
-
 ```
 git clone https://github.com/pojokcodeid/neovim-starter.git "$env:LOCALAPPDATA\nvim"
 nvim
 ```
-
 ### Linux
-
 ```bash
 git clone https://github.com/pojokcodeid/neovim-starter.git ~/.config/nvim
 ```
-## Special Thanks
+## 📜 Special Thanks
 - https://github.com/pojokcode/nvim-lazy - Inspiration Code
 - https://github.com/mnabila/nvimrc - Inspiration Code & Design for My Neovim
