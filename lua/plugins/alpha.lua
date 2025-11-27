@@ -8,22 +8,22 @@ return {
       local logo = require("plugins.lib.dashboard")
 
       -- Center vertically
-      local header_lines = #dashboard_theme.section.header.val
-      local total_lines = vim.o.lines
-      local pad_top = math.floor((total_lines - header_lines) / 5.5)
+      -- local header_lines = #dashboard_theme.section.header.val
+      -- local total_lines = vim.o.lines
+      -- local pad_top = math.floor((total_lines - header_lines) / 7)
 
       -- Layout
       dashboard_theme.opts.layout = {
-        { type = "padding", val = pad_top },
-        dashboard_theme.section.header,
-        { type = "padding", val = 2 },
-        dashboard_theme.section.buttons,
         { type = "padding", val = 1 },
+        dashboard_theme.section.header,
+        { type = "padding", val = 1 },
+        dashboard_theme.section.buttons,
+        { type = "padding", val = 0 },
         dashboard_theme.section.footer,
       }
 
       -- Header Section
-      dashboard_theme.section.header.val = logo.ansi_shadow
+      dashboard_theme.section.header.val = logo.badcoder
       dashboard_theme.section.header.opts.hl = "AlphaHeaderGreen"
       vim.api.nvim_set_hl(0, "AlphaHeaderGreen", { fg = "#db9227", bold = true })
 
@@ -71,15 +71,14 @@ return {
         callback = function()
           local stats = require("lazy").stats()
           local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
+          local version = "   " .. " v" .. vim.version().major .. "." .. vim.version().minor .. "." .. vim.version().patch
+          local plugin = "⚡ Neovim loaded " .. stats.loaded .. "/" .. stats.count .. " plugins in " .. ms .. "ms"
+          local fortune = require("alpha.fortune")
+          local quote = table.concat(fortune(), "\n")
+          local footer = "\t" .. version .. "\t" .. plugin .. "\n" .. quote
 
           -- Footer
-          dashboard_theme.section.footer.val = "⚡ Neovim loaded "
-            .. stats.loaded
-            .. "/"
-            .. stats.count
-            .. " plugins in "
-            .. ms
-            .. "ms"
+          dashboard_theme.section.footer.val = footer
           pcall(vim.cmd.AlphaRedraw)
           dashboard_theme.section.footer.opts.hl = "AlphaFooter"
         end,

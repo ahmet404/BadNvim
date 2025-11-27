@@ -40,7 +40,7 @@ return {
       },
     })
     require("mason-lspconfig").setup({
-      ensure_installed = { "lua_ls", "clangd" },
+      ensure_installed = { "lua_ls", "clangd", "stylua" },
       automatic_enable = true,
     })
 
@@ -49,7 +49,7 @@ return {
       settings = {
         Lua = {
          diagnostics = {
-            globals = { "vim", "enabled", "require", "fstat" },
+            globals = { "vim", "enabled" },
           },
         },
       }

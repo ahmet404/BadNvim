@@ -38,7 +38,7 @@ local groups = {
   Define = { fg = c.cyan },
   Delimiter = { fg = c.yellow },
   DiffAdd = { fg = c.bright_green, bg = c.black },
-  DiffChange = { fg = c.cyan, bg = c.black },
+  DiffChange = { fg = c.yellow, bg = c.black },
   DiffDelete = { fg = c.bright_red, bg = c.black },
   DiffText = { fg = c.bright_yellow, bg = c.black, reverse = true },
   Directory = { fg = c.bright_green, bold = true },
@@ -194,7 +194,7 @@ local groups = {
   TelescopeSelectionCaret = { link = "TelescopeSelection" },
   TelescopeMultiSelection = { link = "Type", default = true },
   TelescopeMultiIcon = { link = "TelescopePromptPrefix", default = true },
-  TelescopePromptPrefix = { fg = c.bright_white },
+  TelescopePromptPrefix = { fg = c.yellow },
 
   --See :h gitsigns-highlight-groups
   GitSignsAdd = { link = "DiffAdd" },
@@ -211,6 +211,10 @@ local groups = {
   NeogitDiffDelete = { link = "DiffDelete" },
   NeogitDiffDeleteCursor = { fg = c.black, bg = c.bright_red },
   NeogitDiffDeleteHighlight = { link = "DiffDelete" },
+
+  -- See :h neo-tree-highlight
+  NeoTreeGitModified = { fg = c.yellow, bold = true, italic = false },
+  NeoTreeGitUntracked = { fg = c.red, bold = true, italic = true },
 }
 
 for group, opts in pairs(groups) do
