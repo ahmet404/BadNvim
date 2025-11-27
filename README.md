@@ -1,19 +1,21 @@
 <div align = "center">
-```
+
 ██████╗  █████╗ ██████╗ ███╗   ██╗██╗   ██╗██╗███╗   ███╗
 ██╔══██╗██╔══██╗██╔══██╗████╗  ██║██║   ██║██║████╗ ████║
 ██████╔╝███████║██║  ██║██╔██╗ ██║██║   ██║██║██╔████╔██║
 ██╔══██╗██╔══██║██║  ██║██║╚██╗██║╚██╗ ██╔╝██║██║╚██╔╝██║
 ██████╔╝██║  ██║██████╔╝██║ ╚████║ ╚████╔╝ ██║██║ ╚═╝ ██║
 ╚═════╝ ╚═╝  ╚═╝╚═════╝ ╚═╝  ╚═══╝  ╚═══╝  ╚═╝╚═╝     ╚═╝
-```
+
 ![logo](img/logo.png) 
 # BadNvim                                                         
 ![Neovim](https://img.shields.io/badge/NeoVim-%2358A143.svg?&style=for-the-badge&logo=neovim&logoColor=white)![Lua](https://img.shields.io/badge/lua-%233C2D72.svg?style=for-the-badge&logo=lua&logoColor=white)
 </div>
 
 ## 📸 Preview
+#### Dashboard
 ![Dashboard](img/dashboard.png) 
+#### UI Core
 ![Home](img/home.png) 
 ## List Plugins
 - Lazy load plugins with [lazy.nvim](https://github.com/folke/lazy.nvim)
@@ -42,7 +44,7 @@
 - Nerd Font https://www.nerdfonts.com/ or https://github.com/ryanoasis/nerd-fonts
 - Windows Terminal (Windows) https://apps.microsoft.com/store/detail/windows-terminal/9N0DX20HK701?hl=en-id&gl=id
 - Powershell (windows) https://apps.microsoft.com/store/detail/powershell/9MZ1SNWT0N5D?hl=en-id&gl=id
-## Installations
+## Installation
 
 ### Windows
 
