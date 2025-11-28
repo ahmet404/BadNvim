@@ -42,12 +42,12 @@
 
 ### Windows
 ```
-git clone https://github.com/pojokcodeid/neovim-starter.git "$env:LOCALAPPDATA\nvim"
+git clone https://github.com/ahmet404/BadNvim "$env:LOCALAPPDATA\nvim"
 nvim
 ```
 ### Linux
 ```bash
-git clone https://github.com/pojokcodeid/neovim-starter.git ~/.config/nvim
+git clone https://github.com/ahmet404/BadNvim ~/.config/nvim
 ```
 ## 📜 Special Thanks
 - https://github.com/pojokcode/nvim-lazy - Inspiration Code
