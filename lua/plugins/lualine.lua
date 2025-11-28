@@ -62,7 +62,7 @@ local conditions = {
 		return vim.fn.empty(vim.fn.expand("%:t")) ~= 1
 	end,
 	hide_in_width = function()
-		return vim.fn.winwidth(0) > 80
+		return vim.fn.winwidth(0) > 120
 	end,
 	check_git_workspace = function()
 		local filepath = vim.fn.expand("%:p:h")
@@ -83,7 +83,6 @@ local mode = {
 -- section name
 local name = {
 	"filename",
-	cond = conditions.buffer_not_empty,
 	file_status = true,
   newfile_status = true,
 	path = 0,
@@ -195,7 +194,11 @@ local progress = {
 
 -- section spaces
 local spaces = function()
-	return icons.ui.Tab .. " " .. vim.api.nvim_buf_get_option(0, "shiftwidth")
+  if vim.fn.winwidth(0) > 120 then
+    return icons.ui.Tab .. " " .. vim.api.nvim_buf_get_option(0, "shiftwidth")
+  else
+    return ""
+  end
 end
 
 -- section diagnostics
@@ -240,12 +243,11 @@ local function get_lsp()
 	if #client_names == 0 then
 		return ""
 	end
-	return " " .. table.concat(client_names, ", ")
+	return " " .. table.concat(client_names, ", ")
 end
 
 -- 2. Cek Formatter (Dari None-LS)
 local function get_formatter()
-	-- Coba load null-ls, kalau belum terinstall jangan error
 	local status, null_ls = pcall(require, "null-ls")
 	if not status then
 		return ""
@@ -335,7 +337,7 @@ return {
       },
       ignore_focus = {},
       always_divide_middle = true,
-      globalstatus = true, -- Sesuai konfigurasi awal kamu
+      globalstatus = true,
       refresh = {
         statusline = 1000,
         tabline = 1000,
