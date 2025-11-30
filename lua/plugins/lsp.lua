@@ -122,6 +122,10 @@ return {
       desc = "User custom event for LspAttach",
     })
   end,
+-- LSP AUTO ENABLE
+-- INSTALL YOUR LSP LANGUAGE WITH MASON
+
+-- CONFIG YOUR LSP LANGUAGE IN BELLOW
   -- LUA
   vim.lsp.config("lua_ls", {
     settings = {
