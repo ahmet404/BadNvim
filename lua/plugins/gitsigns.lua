@@ -1,3 +1,4 @@
+local icons = require("plugins.lib.icons")
 return {
   "lewis6991/gitsigns.nvim",
   lazy = true,
@@ -5,14 +6,23 @@ return {
   ft = "gitcommit",
   event = "BufRead",
   opts = {
+    -- signs = {
+    --   add = { text = "▎" },
+    --   change = { text = "▎" },
+    --   delete = { text = "" },
+    --   topdelete = { text = "" },
+    --   changedelete = { text = "▎" },
+    --   untracked = { text = "▎" },
+    -- },
     signs = {
-      add = { text = "▎" },
-      change = { text = "▎" },
-      delete = { text = "" },
-      topdelete = { text = "" },
+      add = { text = icons.git.LineAdded },
+      change = { text = icons.git.LineModified },
+      delete = { text = icons.git.LineRemoved },
+      topdelete = { text = icons.git.FileDeleted },
       changedelete = { text = "▎" },
-      untracked = { text = "▎" },
+      untracked = { text = icons.git.FileUntracked },
     },
+
     signcolumn = true,
     numhl = true,
     linehl = false,
