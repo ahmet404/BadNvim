@@ -53,16 +53,16 @@ map("n", "<S-k>", "<cmd>m .-2<CR>==", opt)
 -- out of insert mode
 map("i", "jk", "<Esc>")
 
--- BASIC -- 
-map({"n", "v"}, "<leader>w", "", { desc = "󰆓 Save & Load" })
-map({"n", "v"}, "<leader>ww", "<cmd>w!<cr>", { desc = "Save" })
-map({"n", "v"}, "<leader>we", "<cmd>source %<cr>", { desc = "Reload" })
-map({"n", "v"}, "<leader>q", "<cmd>q!<cr>", { desc = "󰿅 Quit" })
-map({"n", "v"}, "<leader>h", "<cmd>nohlsearch<cr>", { desc = "󱪿 No Highlight" })
-map("n", "<leader>s", ":%s/<C-r><C-w>/<C-r><C-w>/g<Left><Left>", {desc = " Search & Replace"})
+-- BASIC --
+map({ "n", "v" }, "<leader>w", "", { desc = "󰆓 Save & Load" })
+map({ "n", "v" }, "<leader>ww", "<cmd>w!<cr>", { desc = "Save" })
+map({ "n", "v" }, "<leader>we", "<cmd>source %<cr>", { desc = "Reload" })
+map({ "n", "v" }, "<leader>q", "<cmd>q!<cr>", { desc = "󰿅 Quit" })
+map({ "n", "v" }, "<leader>h", "<cmd>nohlsearch<cr>", { desc = "󱪿 No Highlight" })
+map("n", "<leader>s", ":%s/<C-r><C-w>/<C-r><C-w>/g<Left><Left>", { desc = " Search & Replace" })
 
 -- PLUGINS KEYMAPS --
--- LAZY -- 
+-- LAZY --
 map("n", "<leader>l", "", { desc = "󱑠 Lazy" })
 map("n", "<leader>li", "<cmd>Lazy install<cr>", { desc = "Install" })
 map("n", "<leader>ls", "<cmd>Lazy sync<cr>", { desc = "Sync" })
@@ -75,14 +75,30 @@ map("n", "<leader>ld", "<cmd>Lazy debug<cr>", { desc = "Debug" })
 
 -- GIT --
 map("n", "<leader>g", "", { desc = " Git" })
-map("n", "<leader>gj", function()require("gitsigns").next_hunk()end, { desc = "Next Hunk" })
-map("n", "<leader>gk", function()require("gitsigns").prev_hunk()end, { desc = "Prev Hunk" })
-map("n", "<leader>gl", function()require("gitsigns").blame_line()end, { desc = "Blame" })
-map("n", "<leader>gp", function()require("gitsigns").preview_hunk()end, { desc = "Preview Hunk" })
-map("n", "<leader>gr", function()require("gitsigns").reset_hunk()end, { desc = "Reset Hunk" })
-map("n", "<leader>gR", function()require("gitsigns").reset_buffer()end, { desc = "Reset Buffer" })
-map("n", "<leader>gs", function()require("gitsigns").stage_hunk()end, { desc = "Stage Hunk" })
-map("n", "<leader>gu", function()require("gitsigns").undo_stage_hunk()end, { desc = "Undo Stage Hunk" })
+map("n", "<leader>gj", function()
+	require("gitsigns").nav_hunk("next")
+end, { desc = "Next Hunk" })
+map("n", "<leader>gk", function()
+	require("gitsigns").nav_hunk("prev")
+end, { desc = "Prev Hunk" })
+map("n", "<leader>gl", function()
+	require("gitsigns").blame_line()
+end, { desc = "Blame" })
+map("n", "<leader>gp", function()
+	require("gitsigns").preview_hunk()
+end, { desc = "Preview Hunk" })
+map("n", "<leader>gr", function()
+	require("gitsigns").reset_hunk()
+end, { desc = "Reset Hunk" })
+map("n", "<leader>gR", function()
+	require("gitsigns").reset_buffer()
+end, { desc = "Reset Buffer" })
+map("n", "<leader>gs", function()
+	require("gitsigns").stage_hunk()
+end, { desc = "Stage Hunk" })
+map("n", "<leader>gu", function()
+	require("gitsigns").stage_hunk()
+end, { desc = "Undo Stage Hunk" })
 map("n", "<Leader>gg", "<cmd>Neogit kind=vsplit<cr>", { desc = "Neogit" })
 map("n", "<Leader>go", "<cmd>Telescope git_status<cr>", { desc = "Telescope: Git Status" })
 map("n", "<Leader>gb", "<cmd>Telescope git_branches<cr>", { desc = "Telescope: Git Branch" })
@@ -115,5 +131,3 @@ map("n", "`", "<cmd>Neotree filesystem reveal left<CR>", opt)
 
 -- Trouble
 map("n", "<Leader>tt", "<cmd>Trouble diagnostics toggle<cr>", { desc = "Trouble: Open diagnostics" })
-
-

@@ -11,9 +11,9 @@ return {
   event = "VeryLazy",
   branch = "v3.x",
   dependencies = {
-    "nvim-lua/plenary.nvim",
     "MunifTanjim/nui.nvim",
     "nvim-tree/nvim-web-devicons",
+    "ahmet404/plenary.nvim",
   },
   opts = {
     sources = { "filesystem" },

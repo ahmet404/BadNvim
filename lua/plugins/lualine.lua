@@ -84,7 +84,7 @@ local mode = {
 local name = {
 	"filename",
 	file_status = true,
-  newfile_status = true,
+	newfile_status = true,
 	path = 0,
 	shorting_target = 40,
 	symbols = {
@@ -157,11 +157,11 @@ local encode = {
 	end,
 }
 -- section fileformat
+local icon = ""
 local fileformat = {
 	"fileformat",
 	cond = conditions.hide_in_width,
 	fmt = function()
-		local icon = ""
 		local os = vim.bo.fileformat:upper()
 		if os == "UNIX" then
 			icon = " "
@@ -194,11 +194,11 @@ local progress = {
 
 -- section spaces
 local spaces = function()
-  if vim.fn.winwidth(0) > 120 then
-    return icons.ui.Tab .. " " .. vim.api.nvim_buf_get_option(0, "shiftwidth")
-  else
-    return ""
-  end
+	if vim.fn.winwidth(0) > 120 then
+		return icons.ui.Tab .. " " .. vim.bo.shiftwidth
+	else
+		return ""
+	end
 end
 
 -- section diagnostics
@@ -223,146 +223,106 @@ local diagnostics = {
 	},
 }
 
---- FUNGSI CUSTOM KHUSUS NONE-LS ---
-
--- 1. Cek LSP (Language Server Asli seperti lua_ls, ts_ls)
+-- section lsp
 local function get_lsp()
 	local clients = vim.lsp.get_clients({ bufnr = 0 })
-	if next(clients) == nil then
+	if #clients == 0 then
 		return ""
 	end
 
-	local client_names = {}
-	for _, client in ipairs(clients) do
-		-- Kita abaikan null-ls/none-ls disini karena dia akan dicek terpisah di fungsi bawah
-		local ignore_clients = { "null-ls", "copilot", "conform", "none-ls" }
-		if not vim.tbl_contains(ignore_clients, client.name) then
-			table.insert(client_names, client.name)
-		end
+	local names = {}
+	for _, c in ipairs(clients) do
+		table.insert(names, c.name)
 	end
-	if #client_names == 0 then
-		return ""
-	end
-	return " " .. table.concat(client_names, ", ")
+	return "  " .. table.concat(names, ", ")
 end
 
--- 2. Cek Formatter (Dari None-LS)
+-- section formatter
 local function get_formatter()
-	local status, null_ls = pcall(require, "null-ls")
-	if not status then
+	local ok, conform = pcall(require, "conform")
+	if not ok then
 		return ""
 	end
 
-	local formatters = {}
-	local sources = require("null-ls.sources")
-	-- Ambil source yang support FORMATTING untuk filetype saat ini
-	local available = sources.get_available(vim.bo.filetype, null_ls.methods.FORMATTING)
-	for _, source in ipairs(available) do
-		table.insert(formatters, source.name)
-	end
-
-	if #formatters == 0 then
+	local formatters = conform.list_formatters(0)
+	if not formatters or #formatters == 0 then
 		return ""
 	end
-	return " " .. table.concat(formatters, ", ")
+
+	local names = {}
+	for _, f in ipairs(formatters) do
+		table.insert(names, f.name)
+	end
+
+	return "  " .. table.concat(names, ", ")
 end
 
--- 3. Cek Linter (Dari None-LS Diagnostics)
+-- section linter
 local function get_linter()
-	local status, null_ls = pcall(require, "null-ls")
-	if not status then
+	local lint = require("lint")
+	local ft = vim.bo.filetype
+	local linters = lint.linters_by_ft[ft]
+
+	if not linters or #linters == 0 then
 		return ""
 	end
 
-	local linters = {}
-	local sources = require("null-ls.sources")
-	-- Ambil source yang support DIAGNOSTICS (Linting) untuk filetype saat ini
-	local available = sources.get_available(vim.bo.filetype, null_ls.methods.DIAGNOSTICS)
-	for _, source in ipairs(available) do
-		table.insert(linters, source.name)
-	end
-
-	if #linters == 0 then
-		return ""
-	end
 	return " " .. table.concat(linters, ", ")
 end
 
--- 4. FUNGSI AGGREGATOR UTAMA: lsp_info
-local lsp_info = {
-	function()
-		local parts = {}
-		local lsp = get_lsp()
-		local formatter = get_formatter()
-		local linter = get_linter()
-
-		if lsp ~= "" then
-			table.insert(parts, lsp)
-		end
-		if formatter ~= "" then
-			table.insert(parts, formatter)
-		end
-		if linter ~= "" then
-			table.insert(parts, linter)
-		end
-
-		if #parts > 0 then
-			return table.concat(parts, " | ")
-		end
-		return " "
-	end,
-	icon = " ",
-	-- Warna teks mengikuti tema (opsional, bisa dihapus kalau mau default)
-	color = { fg = theme.normal.c.fg, gui = "bold" },
-}
-
 return {
-  "nvim-lualine/lualine.nvim",
-  event = "VeryLazy",
-  dependencies = { "nvim-tree/nvim-web-devicons" },
-  opts = {
-    options = {
-      icons_enabled = true,
-      theme = theme,
+	"nvim-lualine/lualine.nvim",
+	event = "VeryLazy",
+	dependencies = { "nvim-tree/nvim-web-devicons" },
+	opts = {
+		options = {
+			icons_enabled = true,
+			theme = theme,
 
-      -- component_separators = { left = "", right = "" },
-      component_separators = { left = "", right = "" },
-      section_separators = { left = " ", right = " " },
+			-- component_separators = { left = "", right = "" },
+			component_separators = { left = "", right = "" },
+			section_separators = { left = " ", right = " " },
 
-      disabled_filetypes = {
-        "packer", "alpha", "dashboard", "Outline",
-        "DressingInput", "lazy", "mason", "help",
-        statusline = {},
-        winbar = {},
-      },
-      ignore_focus = {},
-      always_divide_middle = true,
-      globalstatus = true,
-      refresh = {
-        statusline = 1000,
-        tabline = 1000,
-        winbar = 1000,
-      },
-    },
-    sections = {
-      lualine_a = { mode },
-      lualine_b = { branch },
-      lualine_c = { diff, name },
-      lualine_x = { diagnostics, lsp_info, type },
-      lualine_y = { spaces, fileformat, encode },
-      lualine_z = { progress, location },
-    },
-    inactive_sections = {
-      lualine_a = { mode },
-      lualine_b = { branch },
-      lualine_c = { name },
-      lualine_x = { type },
-      lualine_y = { fileformat },
-      lualine_z = { location },
-    },
-    tabline = {},
-    winbar = {},
-    inactive_winbar = {},
-    extensions = {},
-  }
+			disabled_filetypes = {
+				"packer",
+				"alpha",
+				"dashboard",
+				"Outline",
+				"DressingInput",
+				"lazy",
+				"mason",
+				"help",
+				statusline = {},
+				winbar = {},
+			},
+			ignore_focus = {},
+			always_divide_middle = true,
+			globalstatus = true,
+			refresh = {
+				statusline = 1000,
+				tabline = 1000,
+				winbar = 1000,
+			},
+		},
+		sections = {
+			lualine_a = { mode },
+			lualine_b = { branch },
+			lualine_c = { diff, name },
+			lualine_x = { diagnostics, get_lsp, get_formatter, get_linter, type },
+			lualine_y = { spaces, fileformat, encode },
+			lualine_z = { progress, location },
+		},
+		inactive_sections = {
+			lualine_a = { mode },
+			lualine_b = { branch },
+			lualine_c = { name },
+			lualine_x = { type },
+			lualine_y = { fileformat },
+			lualine_z = { location },
+		},
+		tabline = {},
+		winbar = {},
+		inactive_winbar = {},
+		extensions = {},
+	},
 }

@@ -3,7 +3,7 @@ return {
 	event = "VeryLazy",
 	tag = "v0.1.9",
 	dependencies = {
-		"nvim-lua/plenary.nvim",
+		"ahmet404/plenary.nvim",
 		"nvim-telescope/telescope-ui-select.nvim",
 		"natecraddock/telescope-zf-native.nvim",
 	},

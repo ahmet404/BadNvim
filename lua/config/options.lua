@@ -21,7 +21,7 @@ vim.opt.number = false
 vim.opt.relativenumber = true
 vim.opt.cursorline = true
 vim.opt.cursorcolumn = true
-vim.opt.list = true
+vim.opt.list = false
 vim.opt.listchars = { tab = "‧‧", space = "‧" }
 vim.opt.termguicolors = true
 vim.opt.title = true
