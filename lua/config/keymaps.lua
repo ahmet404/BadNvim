@@ -129,5 +129,8 @@ map("n", "<leader>rp", "<cmd>RunProject<cr>", { desc = "Run Project" })
 -- Neo-tree map
 map("n", "`", "<cmd>Neotree filesystem reveal left<CR>", opt)
 
--- Trouble
+-- TROUBLE
 map("n", "<Leader>tt", "<cmd>Trouble diagnostics toggle<cr>", { desc = "Trouble: Open diagnostics" })
+
+-- MARKDOWN PREVIEW --
+map("n", "<Leader>b", "<cmd>MarkdownPreview<cr>", { desc = " Markdown Preview" })
