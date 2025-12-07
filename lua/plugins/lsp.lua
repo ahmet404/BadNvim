@@ -75,7 +75,7 @@ return {
 				if
 					client:supports_method("textDocument/hover") or client:supports_method("textDocument/signatureHelp")
 				then
-					vim.keymap.set("n", "K", function()
+					vim.keymap.set("n", "L", function()
 						vim.lsp.buf.hover({
 							silent = true,
 							border = "single",
