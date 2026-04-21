@@ -1,6 +1,6 @@
 {
   "Starter Template": {
-    "prefix": ",",
+    "prefix": "$",
     "body": [
       "#include <stdio.h>",
       "#include <stdlib.h>",
@@ -28,19 +28,12 @@
   },
   "main() template": {
     "prefix": "ma",
-    "body": [
-      "int main() {",
-      "\t$0",
-      "\treturn 0;",
-      "}"
-    ],
+    "body": ["int main() {", "\t$0", "\treturn 0;", "}"],
     "description": "Standard main() snippet"
   },
   "Incude completion": {
     "prefix": "inc",
-    "body": [
-      "#include <$0>"
-    ],
+    "body": ["#include <$0>"],
     "description": "Snippet for include c & cpp"
   }
 }
